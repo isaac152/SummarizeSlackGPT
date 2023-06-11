@@ -14,7 +14,7 @@ logger = logging.getLogger()
 class SlackHelper:
     def __init__(self, client: AsyncWebClient, say: AsyncSay, bot_id: str) -> None:
         self._client = client
-        self._say = say
+        self.say = say
         self._bot_id = bot_id
 
     async def _parse_messages(
@@ -30,7 +30,7 @@ class SlackHelper:
                 continue
 
             if thread_id and not parse_thread:
-                channel = self._say.channel
+                channel = self.say.channel
                 thread_response = await self._client.conversations_replies(
                     channel=channel, ts=thread_id, limit=200
                 )
@@ -52,7 +52,7 @@ class SlackHelper:
     async def get_conversation_history(
         self, channel: Optional[str] = "", arguments: Optional[ExtraArguments] = None
     ) -> list[Message]:
-        channel = channel or self._say.channel
+        channel = channel or self.say.channel
         date_timestamp = (
             time.mktime(arguments.date.timetuple()) if arguments.date else None
         )
