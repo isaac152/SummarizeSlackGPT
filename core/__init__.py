@@ -20,9 +20,12 @@ async def get_command(event: dict, say: AsyncSay) -> None:
         )
         return await say(error_message)
 
+    bot_data = await app.client.auth_test()
+    bot_id = bot_data.get("user_id", "")
+
     command = event_text[1].lower().strip()
     extra_args = ExtraArguments(event_text[2:])
 
-    slack_helper = SlackHelper(app.client, say)
+    slack_helper = SlackHelper(app.client, say, bot_id)
 
     return await command_handler(command, slack_helper, extra_args)
