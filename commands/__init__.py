@@ -1,13 +1,19 @@
-from slack_bolt.context.say.async_say import AsyncSay
-
 from commands.feelings import command_feelings
 from commands.help import command_help
 from commands.report import command_report
 from commands.resume import command_resume
 from commands.topics import command_topics
+from core.slack.helper import SlackHelper
+from core.slack.models import ExtraArguments
 
 
-async def command_handler(command_name: str, say: AsyncSay, *args, **kwargs) -> None:
+async def command_handler(
+    command_name: str,
+    helper: SlackHelper,
+    extra_arguments: ExtraArguments,
+    *args,
+    **kwargs
+) -> None:
     commands = {
         "resume": command_resume,
         "topics": command_topics,
@@ -15,4 +21,6 @@ async def command_handler(command_name: str, say: AsyncSay, *args, **kwargs) -> 
         "report": command_report,
         "help": command_help,
     }
-    return await commands.get(command_name, command_help)(say, *args, **kwargs)
+    return await commands.get(command_name, command_help)(
+        helper, extra_arguments, *args, **kwargs
+    )
