@@ -11,6 +11,15 @@ from core.slack.models import ExtraArguments, Message
 logger = logging.getLogger()
 
 
+def parse_conversation(messages: list[Message]) -> list[str]:
+    parsed_messages = []
+    messages.reverse()
+    for message in messages:
+        if message.is_valid():
+            parsed_messages.extend(message.get_message_data())
+    return parsed_messages
+
+
 class SlackHelper:
     def __init__(self, client: AsyncWebClient, say: AsyncSay, bot_id: str) -> None:
         self._client = client
@@ -49,9 +58,13 @@ class SlackHelper:
             parsed_messages.append(parsed_message)
         return parsed_messages
 
+    async def get_username(self, user_id: str) -> str:
+        user_data = await self._client.users_info(user=user_id)
+        return user_data.get("user", {}).get("real_name")
+
     async def get_conversation_history(
         self, channel: Optional[str] = "", arguments: Optional[ExtraArguments] = None
-    ) -> list[Message]:
+    ) -> list[str]:
         channel = channel or self.say.channel
         date_timestamp = (
             time.mktime(arguments.date.timetuple()) if arguments.date else None
@@ -71,10 +84,7 @@ class SlackHelper:
                 raise Exception("Custom exception")
 
             messages = await self._parse_messages(raw_messages)
-            messages = [
-                message.get_message_data() for message in messages if message.is_valid()
-            ]
-            return
+            return parse_conversation(messages)
         except SlackApiError as e:
             logger.error(f"Slack error: {e}")
 

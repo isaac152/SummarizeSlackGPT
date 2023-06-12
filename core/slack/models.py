@@ -49,17 +49,16 @@ class Message:
         self.raw_text = raw_text
         self.thread_messages = thread_messages
 
-    def get_message_data(self) -> dict:
-        return {
-            "user": self.user,
-            "message": self.raw_text,
-            "extra_messages": self._parse_thread_messages(),
-        }
+    def get_message_data(self) -> list[str]:
+        parsed_thread = self._parse_thread_messages()
+        current_message = f"{self.user}:{self.raw_text}"
+        return [current_message, *parsed_thread]
 
-    def _parse_thread_messages(self) -> list[dict]:
+    def _parse_thread_messages(self) -> list[str]:
         parsed_thread = []
         for message in self.thread_messages[1:]:
-            parsed_thread.append({"user": message.user, "message": message.raw_text})
+            parsed_thread.append(f"{message.user}:{message.raw_text}")
+        parsed_thread.reverse()
         return parsed_thread
 
     def is_valid(self, users_id: Optional[list[str]] = None) -> bool:

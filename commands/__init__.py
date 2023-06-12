@@ -1,7 +1,7 @@
 from commands.feelings import command_feelings
 from commands.help import command_help
 from commands.report import command_report
-from commands.resume import command_resume
+from commands.summary import command_summary
 from commands.topics import command_topics
 from core.slack.helper import SlackHelper
 from core.slack.models import ExtraArguments
@@ -15,7 +15,7 @@ async def command_handler(
     **kwargs
 ) -> None:
     commands = {
-        "resume": command_resume,
+        "summary": command_summary,
         "topics": command_topics,
         "feelings": command_feelings,
         "report": command_report,

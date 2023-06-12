@@ -1,3 +1,5 @@
+import logging
+
 from slack_bolt.async_app import AsyncApp
 from slack_bolt.context.say.async_say import AsyncSay
 
@@ -5,6 +7,10 @@ import settings
 from commands import command_handler
 from core.slack import ExtraArguments, SlackHelper
 from core.slack.constants import GENERIC_CONNECTION_ERROR, MISSING_COMMAND_ERROR
+
+logging.basicConfig(
+    level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s"
+)
 
 app = AsyncApp(
     token=settings.SLACK_BOT_TOKEN, signing_secret=settings.SLACK_SIGNING_SECRET

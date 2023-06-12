@@ -9,7 +9,7 @@ async def command_help(
             "type": "section",
             "text": {
                 "type": "mrkdwn",
-                "text": "Nice to meet you, i am the ResumeGPT. My dutty is resume and reports the conversations in a public channel :grin:",
+                "text": "Nice to meet you, i am the SummaryGPT. My dutty is summary and reports the conversations in a public channel :grin:",
             },
         },
         {
@@ -20,28 +20,28 @@ async def command_help(
             "type": "section",
             "text": {
                 "type": "mrkdwn",
-                "text": "• *resume*: Get a channel conversation resume  \n Optional arguments: Date | User mentions \n\n *Examples*:  \n\n  - @ResumeGPT resume 11/06/2023   \n\n  - @ResumeGPT resume  @JustPepe \n\n  - @ResumeGPT resume 11/06/2023 @Pepethefrog @Someone",
+                "text": "• *summary*: Get a channel conversation summary  \n Optional arguments: Date | User mentions \n\n *Examples*:  \n\n  - @SummaryGPT summary 11/06/2023   \n\n  - @SummaryGPT summary  @JustPepe \n\n  - @SummaryGPT summary 11/06/2023 @Pepethefrog @Someone",
             },
         },
         {
             "type": "section",
             "text": {
                 "type": "mrkdwn",
-                "text": "• *topics*: Get the main topics of a channel conversation \n Optional arguments: Date \n\n *Examples*:  \n\n  - @Resume topics 11/05/2023  \n\n",
+                "text": "• *topics*: Get the main topics of a channel conversation \n Optional arguments: Date \n\n *Examples*:  \n\n  - @summary topics 11/05/2023  \n\n",
             },
         },
         {
             "type": "section",
             "text": {
                 "type": "mrkdwn",
-                "text": "• *feelings*: Get the general feeling of a conversation \n Optional arguments: Date | User mentions \n\n *Examples*:  \n\n  - @ResumeGPT feelings 11/06/2023   \n\n  - @ResumeGPT feelings  @JustSadPepe \n\n  - @ResumeGPT feelings 11/06/2023 @Pepethefrog @Someone",
+                "text": "• *feelings*: Get the general feeling of a conversation \n Optional arguments: Date | User mentions \n\n *Examples*:  \n\n  - @SummaryGPT feelings 11/06/2023   \n\n  - @SummaryGPT feelings  @JustSadPepe \n\n  - @SummaryGPT feelings 11/06/2023 @Pepethefrog @Someone",
             },
         },
         {
             "type": "section",
             "text": {
                 "type": "mrkdwn",
-                "text": "• *report*: Get a simple report of a channel conversation \n Optional arguments: Date \n\n *Examples*:  \n\n  - @Resume report 11/05/2023  \n\n ",
+                "text": "• *report*: Get a simple report of a channel conversation \n Optional arguments: Date \n\n *Examples*:  \n\n  - @summary report 11/05/2023  \n\n ",
             },
         },
     ]

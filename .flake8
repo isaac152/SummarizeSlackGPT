@@ -33,3 +33,4 @@ extend_exclude =
 per_file_ignores:
     core/slack/__init__.py:F401
     core/slack/models.py:R503 
+    core/openapi/__init__.py:F401

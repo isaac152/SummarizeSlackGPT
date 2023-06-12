@@ -1,7 +1,7 @@
 
 ### Commands
 
-- Resume
+- Summary 
 - Topics
 - Feelings
 - Report
