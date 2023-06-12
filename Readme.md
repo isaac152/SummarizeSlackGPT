@@ -37,6 +37,6 @@ In each command (except help) you can add the following extra arguments:
 
 ## Examples
 
-@SummarizeGPT summary 11/06/2023 -> Summarize the messages from that date to now.
-@SummarizeGPT summary 11/06/2023 @PepeFrog -> Summarize the filtered pepefrog messages from that date to now.
+- @SummarizeGPT summary 11/06/2023 -> Summarize the messages from that date to now.
+- @SummarizeGPT summary 11/06/2023 @PepeFrog -> Summarize the filtered pepefrog messages from that date to now.
 
