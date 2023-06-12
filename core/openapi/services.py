@@ -51,16 +51,16 @@ async def get_channel_summary(messages: list[str]) -> list[dict]:
             messages=format_message(
                 message=f"""
                 Based on the following list of messages {messages} where each message is represented like: "<User>:Message"
-                You will identify the language from messages and responde with that language.
+                You will identify the language from messages and reply with that language.
                 If you can't recognize the language, assume it's English.
                 You are going to summarize the conversation.
                 You are going to use following format {SUMMARIZE_FORMAT}
                 - Replace (topic) for a topic of the conversation
                 - Replace (summarize) for the summarize of that topic in particular
                 Only respond with the format supplied with a valid json and nothing else.
-                Do no add or create or add any topic/idea that is not int he conversation
+                Do not add or create any topic/idea that is not in the conversation
                 """,
-                role="You are a very talent team manager who wants to summary the main topics",
+                role="You are a very talented team manager who wants to summary the main topics",
             ),
         )
         response = completion.choices[0].message.content
@@ -85,16 +85,16 @@ async def get_channel_messages_feelings(messages: list[str]) -> list[dict]:
             messages=format_message(
                 message=f"""
                 Based on the following list of messages {messages} where each message is represented like: "<User>:Message"
-                You will identify the language from messages and responde with that language.
+                You will identify the language from messages and reply with that language.
                 If you can't recognize the language, assume it's English.
                 You are going to identify the feelings in the conversation based on topics.
                 You are going to use following format {FEELINGS_FORMAT}
-                Do no add or create or add any topic/idea that is not int he conversation
+                Do not add or create any topic/idea that is not in the conversation
                 - Replace (topic) for a topic of the conversation
                 - Replace (feeling) for the general feeling of that topic in particular
                 Only respond with the format supplied with a valid json and nothing else.
                 """,
-                role="You are a very talent team manager who wants to identify how your team is feeling about the work",
+                role="You are a very talented team manager who wants to identify how your team is feeling about the work",
             ),
         )
         response = completion.choices[0].message.content
@@ -119,16 +119,16 @@ async def get_channel_main_topics(messages: list[str]) -> list[str]:
             messages=format_message(
                 message=f"""
                 Based on the following list of messages {messages} where each message is represented like: "<User>:Message"
-                You will identify the language from messages and responde with that language.
+                You will identify the language from messages and reply with that language.
                 If you can't recognize the language, assume it's English.
                 You are going to summarize the main topics of the conversation.
                 You are going to use following format {TOPICS_FORMAT}
                 - Replace topic for the 5 most importants topics of the conversation.
                 If you cant find 5 main topics, just write as you can.
-                Do no add or create or add any topic/idea that is not int he conversation
+                Do not add or create any topic/idea that is not in the conversation
                 Only respond with the format supplied with a valid json and nothing else.
                 """,
-                role="You are a very talent team manager who wants to summary the main topics",
+                role="You are a very talented team manager who wants to summary the main topics",
             ),
         )
         response = completion.choices[0].message.content
@@ -156,7 +156,7 @@ async def get_channel_report(messages: list[str]) -> list[dict]:
             messages=format_message(
                 message=f"""
                 Based on the following list of messages {messages} where each message is represented like: "<User>:Message"
-                You will identify the language from messages and responde with that language.
+                You will identify the language from messages and reply with that language.
                 If you can't recognize the language, assume it's English.
 
                 You are going to identify the feelings in the conversation for the following topics {topics} for each user.
@@ -168,9 +168,9 @@ async def get_channel_report(messages: list[str]) -> list[dict]:
                 Only respond with the format supplied and nothing else.
 
                 If a user doesnt talk or know about the topic, use "neutral" as feeling and 50% as confort
-                Do no add or create or add any topic/idea that is not int he conversation
+                Do not add or create any topic/idea that is not in the conversation
                 """,
-                role="You are a very talent team manager who wants to create a report of your team status",
+                role="You are a very talented team manager who wants to create a report of your team status",
             ),
         )
         response = completion.choices[0].message.content
