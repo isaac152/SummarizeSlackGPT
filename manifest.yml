@@ -23,7 +23,7 @@ oauth_config:
       - users:read
 settings:
   event_subscriptions:
-    request_url: https://051f-146-70-187-201.ngrok-free.app/slack/events
+    request_url: Youurllmao
     bot_events:
       - app_mention
       - message.im
