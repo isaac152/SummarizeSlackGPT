@@ -11,6 +11,7 @@ from core.openapi.constants import (
     SUMMARIZE_FORMAT,
     TOPICS_FORMAT,
 )
+from core.openapi.exceptions import ChatGPTServiceException, ChatGPTWrongJson
 from settings import OPENAI_KEY
 
 logger = logging.getLogger("services.chatgpt")
@@ -37,7 +38,7 @@ def format_response_to_json(raw_questionnaire: str) -> list[dict]:
     except Exception as e:
         logger.error("Raising exception")
         logger.error(e)
-        raise Exception("Custom exception")
+        raise ChatGPTWrongJson()
 
 
 async def get_channel_summary(messages: list[str]) -> list[dict]:
@@ -71,7 +72,7 @@ async def get_channel_summary(messages: list[str]) -> list[dict]:
     except openai.error.RateLimitError:
         logger.error(f"Max rate limit:  {len(messages)} amount of messages")
 
-    raise Exception("Custom exception")
+    raise ChatGPTServiceException()
 
 
 async def get_channel_messages_feelings(messages: list[str]) -> list[dict]:
@@ -105,7 +106,7 @@ async def get_channel_messages_feelings(messages: list[str]) -> list[dict]:
     except openai.error.RateLimitError:
         logger.error(f"Max rate limit:  {len(messages)} amount of messages")
 
-    raise Exception("Custom exception")
+    raise ChatGPTServiceException()
 
 
 async def get_channel_main_topics(messages: list[str]) -> list[str]:
@@ -138,7 +139,7 @@ async def get_channel_main_topics(messages: list[str]) -> list[str]:
     except openai.error.RateLimitError:
         logger.error(f"Max rate limit:  {len(messages)} amount of messages")
 
-    raise Exception("Custom exception")
+    raise ChatGPTServiceException()
 
 
 async def get_channel_report(messages: list[str]) -> list[dict]:
@@ -180,5 +181,4 @@ async def get_channel_report(messages: list[str]) -> list[dict]:
         return format_response_to_json(f"[{response}]")
     except openai.error.RateLimitError:
         logger.error(f"Max rate limit:  {len(messages)} amount of messages")
-
-    raise Exception("Custom exception")
+    raise ChatGPTServiceException()

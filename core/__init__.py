@@ -11,6 +11,7 @@ from core.slack.constants import GENERIC_CONNECTION_ERROR, MISSING_COMMAND_ERROR
 logging.basicConfig(
     level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s"
 )
+logger = logging.getLogger()
 
 app = AsyncApp(
     token=settings.SLACK_BOT_TOKEN, signing_secret=settings.SLACK_SIGNING_SECRET
@@ -26,12 +27,16 @@ async def get_command(event: dict, say: AsyncSay) -> None:
         )
         return await say(error_message)
 
-    bot_data = await app.client.auth_test()
-    bot_id = bot_data.get("user_id", "")
+    try:
+        bot_data = await app.client.auth_test()
+        bot_id = bot_data.get("user_id", "")
 
-    command = event_text[1].lower().strip()
-    extra_args = ExtraArguments(event_text[2:])
+        command = event_text[1].lower().strip()
+        extra_args = ExtraArguments(event_text[2:])
 
-    slack_helper = SlackHelper(app.client, say, bot_id)
+        slack_helper = SlackHelper(app.client, say, bot_id)
 
-    return await command_handler(command, slack_helper, extra_args)
+        return await command_handler(command, slack_helper, extra_args)
+    except BaseException as e:
+        logger.error(e)
+    return await say(text="There was a problem with the connection. Try again")

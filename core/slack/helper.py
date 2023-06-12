@@ -6,6 +6,7 @@ from slack_bolt.context.say.async_say import AsyncSay
 from slack_sdk.errors import SlackApiError
 from slack_sdk.web.async_client import AsyncWebClient
 
+from core.slack.exceptions import SlackServiceException
 from core.slack.models import ExtraArguments, Message
 
 logger = logging.getLogger()
@@ -88,4 +89,4 @@ class SlackHelper:
         except SlackApiError as e:
             logger.error(f"Slack error: {e}")
 
-        raise Exception("same custom exception")
+        raise SlackServiceException("same custom exception")
