@@ -20,7 +20,7 @@ async def command_topics(
             "type": "section",
             "text": {
                 "type": "mrkdwn",
-                "text": topic_text,
+                "text": "".join(topic_text),
             },
         },
     ]
